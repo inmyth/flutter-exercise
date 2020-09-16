@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "573942153583",
+    "firebase_url": "https://cobalt-carver-289702.firebaseio.com",
+    "project_id": "cobalt-carver-289702",
+    "storage_bucket": "cobalt-carver-289702.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573942153583:android:125e0246edd4238567a89a",
+        "android_client_info": {
+          "package_name": "me.mbcu.flutter_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573942153583-05gged1vs82lrmbhfvkifoi4k5u5bbul.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.mbcu.flutter_example",
+            "certificate_hash": "2e36aebbc5b0e086d73a406fe1fb7ca30f4f804a"
+          }
+        },
+        {
+          "client_id": "573942153583-9c44m526i8h8ndjti46204e3je7jonng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBPEd1dxNJ8LZUSUZErHcYbNFaO81x-dU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "573942153583-9c44m526i8h8ndjti46204e3je7jonng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
