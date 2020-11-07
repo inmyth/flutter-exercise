@@ -1,24 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final appTitle = 'Form Validation Demo';
-
-    return MaterialApp(
-      title: appTitle,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(appTitle),
-        ),
-        body: MyCustomForm(),
-      ),
-    );
-  }
-}
-
 // Create a Form widget.
 class MyCustomForm extends StatefulWidget {
   @override
@@ -51,10 +32,13 @@ class MyCustomFormState extends State<MyCustomForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               TextFormField(
+                keyboardType: TextInputType.multiline,
+                minLines: 3,//Normal textInputField will be displayed
+                maxLines: 5,// when user presses enter it will adapt to it
                 decoration: const InputDecoration(
                   icon: Icon(Icons.person),
-                  hintText: 'What do people call you?',
-                  labelText: 'Name *',
+                  hintText: 'Describe your work experience',
+                  labelText: 'Experience *',
                 ),
                 validator: (value) {
                   if (value.isEmpty) {

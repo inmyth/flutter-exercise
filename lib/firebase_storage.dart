@@ -76,10 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   final StorageReference firebaseStorageRef = FirebaseStorage.instance.ref().child('flutter_example').child('${path.basename(_image.path)}');
                   final StorageUploadTask task =  firebaseStorageRef.putFile(_image);
                 });
-
               });
-
-
             },
           )
         ],

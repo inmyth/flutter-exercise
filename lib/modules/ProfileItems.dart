@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_app/widget/AppDrawer.dart';
+import 'MyCustomForm.dart';
 
-void main() => runApp(MyApp());
+class ProfileItems extends StatelessWidget {
 
-class MyApp extends StatelessWidget {
+  static const String routeName = '/profile';
+
+
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Form Validation Demo';
@@ -14,13 +18,15 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text(appTitle),
         ),
-        body: ProfileItems(),
+        body: Content(),
+        drawer: AppDrawer(),
       ),
     );
   }
 }
 
-class ProfileItems extends StatelessWidget {
+class Content extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,31 +49,83 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: Column(
-        children: [
-          Stack(children: <Widget>[
-            Container(
-              height: 250.0,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(
-                          "https://images.unsplash.com/photo-1559959656-9bcf78455c5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"),
-                      fit: BoxFit.cover)),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Stack(
-                alignment: Alignment.topCenter,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: circleRadius / 2.0,
+          children: [
+            Stack(children: <Widget>[
+              Container(
+                height: 250.0,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "https://images.unsplash.com/photo-1559959656-9bcf78455c5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"),
+                        fit: BoxFit.cover)),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: circleRadius / 2.0,
+                      ),
+
+                      ///here we create space for the circle avatar to get ut of the box
+                      child: Container(
+                        height: 250.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 8.0,
+                              offset: Offset(0.0, 5.0),
+                            ),
+                          ],
+                        ),
+                        width: double.infinity,
+                        child: Padding(
+                            padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(
+                                  height: circleRadius / 2,
+                                ),
+                                Text(
+                                  'Martin B Utama',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold, fontSize: 34.0),
+                                ),
+                                Text(
+                                  'Bandung, West Java',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16.0,
+                                      color: Colors.lightBlueAccent),
+                                ),
+                                SizedBox(
+                                  height: 30.0,
+                                ),
+                                Padding(
+                                  padding:
+                                  const EdgeInsets.symmetric(horizontal: 32.0),
+                                  child: Text("Welder, Construction",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w300,
+                                          height: 2.0,
+                                          fontSize: 16.0)),
+                                )
+                              ],
+                            )),
+                      ),
                     ),
 
-                    ///here we create space for the circle avatar to get ut of the box
-                    child: Container(
-                      height: 250.0,
+                    ///Image Avatar
+                    Container(
+                      width: circleRadius,
+                      height: circleRadius,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
+                        shape: BoxShape.circle,
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
@@ -77,78 +135,26 @@ class Header extends StatelessWidget {
                           ),
                         ],
                       ),
-                      width: double.infinity,
                       child: Padding(
-                          padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(
-                                height: circleRadius / 2,
-                              ),
-                              Text(
-                                'Martin B Utama',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 34.0),
-                              ),
-                              Text(
-                                'Bandung, West Java',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16.0,
-                                    color: Colors.lightBlueAccent),
-                              ),
-                              SizedBox(
-                                height: 30.0,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 32.0),
-                                child: Text("Welder, Construction",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w300,
-                                        height: 2.0,
-                                        fontSize: 16.0)),
-                              )
-                            ],
-                          )),
-                    ),
-                  ),
+                        padding: EdgeInsets.all(4.0),
+                        child: Center(
+                          child: Container(
+                            child: Icon(Icons.person),
 
-                  ///Image Avatar
-                  Container(
-                    width: circleRadius,
-                    height: circleRadius,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 8.0,
-                          offset: Offset(0.0, 5.0),
-                        ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Center(
-                        child: Container(
-                          child: Icon(Icons.person),
-
-                          /// replace your image with the Icon
+                            /// replace your image with the Icon
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+            ]),
+            SizedBox(
+              height: 20.0,
             ),
-          ]),
-          SizedBox(
-            height: 20.0,
-          ),
-      ],
-    ));
+          ],
+        ));
   }
 }
 
@@ -192,7 +198,7 @@ var header = Container(
               elevation: 5.0,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 22.0),
+                const EdgeInsets.symmetric(horizontal: 8.0, vertical: 22.0),
                 child: Row(
                   children: <Widget>[
                     Expanded(
@@ -277,7 +283,6 @@ var header = Container(
     ));
 
 final List<String> imgList = [
-  'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
   'https://images.unsplash.com/photo-1507335563142-a814078ce38c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=701&q=80',
   'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
   'https://images.unsplash.com/photo-1545186070-de624ed19875?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
@@ -286,55 +291,55 @@ final List<String> imgList = [
 ];
 
 List<Widget> buildSliders(BuildContext context, List<String> imgList) {
-    return imgList
-        .map((item) => GestureDetector(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (_) {
-              return ShowcaseImageScreen(item);
-            }));
-          },
+  return imgList
+      .map((item) => GestureDetector(
+    onTap: (){
+      Navigator.push(context, MaterialPageRoute(builder: (_) {
+        return ShowcaseImageScreen(item);
+      }));
+    },
 
-          child: Container(
-            child: Container(
-              margin: EdgeInsets.all(5.0),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  child: Stack(
-                    children: <Widget>[
-                      Image.network(item, fit: BoxFit.cover, width: 1000.0),
-                      Positioned(
-                        bottom: 0.0,
-                        left: 0.0,
-                        right: 0.0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromARGB(200, 0, 0, 0),
-                                Color.fromARGB(0, 0, 0, 0)
-                              ],
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                            ),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 20.0),
-                          child: Text(
-                            'No. ${imgList.indexOf(item)} image',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+    child: Container(
+      child: Container(
+        margin: EdgeInsets.all(5.0),
+        child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            child: Stack(
+              children: <Widget>[
+                Image.network(item, fit: BoxFit.cover, width: 1000.0),
+                Positioned(
+                  bottom: 0.0,
+                  left: 0.0,
+                  right: 0.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromARGB(200, 0, 0, 0),
+                          Color.fromARGB(0, 0, 0, 0)
+                        ],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
                       ),
-                    ],
-                  )),
-            ),
-          ),
-        ))
-        .toList();
+                    ),
+                    padding: EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 20.0),
+                    child: Text(
+                      'No. ${imgList.indexOf(item)} image',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )),
+      ),
+    ),
+  ))
+      .toList();
 }
 
 class ShowcaseCarousel extends StatelessWidget {
@@ -343,20 +348,20 @@ class ShowcaseCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: Column(
-      children: <Widget>[
-        CarouselSlider(
-          options: CarouselOptions(
-            autoPlay: true,
-            aspectRatio: 2.0,
-            enlargeCenterPage: true,
-          ),
-          items: buildSliders(context, imgList),
-        ),
-        SizedBox(
-          height: 20.0,
-        ),
-      ],
-    ));
+          children: <Widget>[
+            CarouselSlider(
+              options: CarouselOptions(
+                autoPlay: true,
+                aspectRatio: 2.0,
+                enlargeCenterPage: true,
+              ),
+              items: buildSliders(context, imgList),
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+          ],
+        ));
   }
 }
 
@@ -394,9 +399,27 @@ class Experience extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text("Experience",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, height: 2.0, fontSize: 24.0)),
+          Container(
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Experience",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, height: 2.0, fontSize: 24.0)),
+                  GestureDetector(
+                    child: IconButton(
+                      icon: Icon(Icons.add),
+                      tooltip: 'Increase volume by 10',
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_) {
+                          return MyCustomForm();
+                        }));
+                      },
+                    ),
+                  ),
+                ]
+            ),
+          ),
           SizedBox(
             height: 10.0,
           ),
@@ -419,6 +442,8 @@ My duties are :
     );
   }
 }
+
+
 
 class ExperienceItem extends StatelessWidget {
   ExperienceItem(this.title, this.org, this.duration, this.desc);
@@ -509,45 +534,45 @@ class ItemzState extends State<Itemz> {
     // Build a Form widget using the _formKey created above.
     return Card(
         child: Padding(
-      padding: EdgeInsets.all(16.0),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            TextFormField(
-              decoration: const InputDecoration(
-                icon: Icon(Icons.person),
-                hintText: 'What do people call you?',
-                labelText: 'Name *',
-              ),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter some text';
-                } else if (exp.hasMatch(value)) {
-                  return 'Input has to start with 123';
-                }
-                return null;
-              },
+          padding: EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                TextFormField(
+                  decoration: const InputDecoration(
+                    icon: Icon(Icons.person),
+                    hintText: 'What do people call you?',
+                    labelText: 'Name *',
+                  ),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter some text';
+                    } else if (exp.hasMatch(value)) {
+                      return 'Input has to start with 123';
+                    }
+                    return null;
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: RaisedButton(
+                    onPressed: () {
+                      // Validate returns true if the form is valid, or false
+                      // otherwise.
+                      if (_formKey.currentState.validate()) {
+                        // If the form is valid, display a Snackbar.
+                        Scaffold.of(context).showSnackBar(
+                            SnackBar(content: Text('Processing Data')));
+                      }
+                    },
+                    child: Text('Submit'),
+                  ),
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: RaisedButton(
-                onPressed: () {
-                  // Validate returns true if the form is valid, or false
-                  // otherwise.
-                  if (_formKey.currentState.validate()) {
-                    // If the form is valid, display a Snackbar.
-                    Scaffold.of(context).showSnackBar(
-                        SnackBar(content: Text('Processing Data')));
-                  }
-                },
-                child: Text('Submit'),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 }
