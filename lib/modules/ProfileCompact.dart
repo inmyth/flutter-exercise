@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_app/widget/AppDrawer.dart';
-import 'MyCustomForm.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileCompact extends StatelessWidget {
 
@@ -411,10 +411,10 @@ class Experience extends StatelessWidget {
                   GestureDetector(
                     child: IconButton(
                       icon: Icon(Icons.add),
-                      tooltip: 'Increase volume by 10',
+                      tooltip: 'Add experience',
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (_) {
-                          return MyCustomForm();
+                          return _ExperienceForm();
                         }));
                       },
                     ),
@@ -585,11 +585,18 @@ class Certification extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          new Certificationitem(
+          new CertificationItem(
             title: "Project Management Professional",
             org: "The Project Management Institute",
             issued: "Aug 2015",
-          )
+            link: "https://siki.lpjk.net/lpjknew/detail/detail_ta_kbli.php?id=3276063009830006",
+          ),
+        new CertificationItem(
+            title: "Project Management Expert",
+            org: "IAMPI",
+            issued: "Nov 2020",
+            link: "https://siki.lpjk.net/lpjknew/detail/detail_ta_kbli.php?id=3276063009830006",
+        ),
         ],
       ),
     );
@@ -597,12 +604,26 @@ class Certification extends StatelessWidget {
 
 }
 
-class Certificationitem extends StatelessWidget{
-  const Certificationitem({this.title, this.org, this.issued});
+class CertificationItem extends StatelessWidget{
+  const CertificationItem({this.title, this.org, this.issued, this.link});
 
   final String title;
   final String org;
   final String issued;
+  final String link;
+
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -621,19 +642,15 @@ class Certificationitem extends StatelessWidget{
                   fontWeight: FontWeight.w300, height: 1.5, fontSize: 14.0)),
           GestureDetector(
             child: Text("link",
-
                 style: TextStyle(
                     fontWeight: FontWeight.w300, height: 1.5, fontSize: 14.0,
                     color: Colors.lightBlue.withOpacity(1.0)
                 )
 
             ),
-
             onTap: (){
-              final snackBar = SnackBar(content: Text("Clicked the Container!"));
-              Scaffold.of(context).showSnackBar(snackBar);
+              _launchInBrowser(link);
             },
-
           ),
           SizedBox(
             height: 5.0,
@@ -686,70 +703,110 @@ class EducationItem extends StatelessWidget {
 
 }
 
-// Create a Form widget.
-class Itemz extends StatefulWidget {
-  @override
-  ItemzState createState() {
-    return ItemzState();
-  }
-}
 
-// Create a corresponding State class.
-// This class holds data related to the form.
-class ItemzState extends State<Itemz> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a GlobalKey<FormState>,
-  // not a GlobalKey<MyCustomFormState>.
+class _ExperienceForm extends StatelessWidget{
   final _formKey = GlobalKey<FormState>();
 
   final RegExp exp = new RegExp(r"([123]+)");
+  final maxLength = 100;
 
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
-    return Card(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                TextFormField(
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.person),
-                    hintText: 'What do people call you?',
-                    labelText: 'Name *',
-                  ),
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Please enter some text';
-                    } else if (exp.hasMatch(value)) {
-                      return 'Input has to start with 123';
-                    }
-                    return null;
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: RaisedButton(
-                    onPressed: () {
-                      // Validate returns true if the form is valid, or false
-                      // otherwise.
-                      if (_formKey.currentState.validate()) {
-                        // If the form is valid, display a Snackbar.
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text('Processing Data')));
+    // Create a global key that uniquely identifies the Form widget
+    // and allows validation of the form.
+    //
+    // Note: This is a GlobalKey<FormState>,
+    // not a GlobalKey<MyCustomFormState>.
+    return Scaffold(
+      body: Card(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.work_outline),
+                      hintText: 'What is your position ?',
+                      labelText: 'Position',
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Please enter some text';
+                      } else if (value.length > maxLength) {
+                        return 'Input cannot exceed 100 characters';
                       }
+                      return null;
                     },
-                    child: Text('Submit'),
                   ),
-                ),
-              ],
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.assessment_outlined),
+                      hintText: 'What is the company or project ?',
+                      labelText: 'Company',
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Please enter some text';
+                      } else if (value.length > maxLength) {
+                        return 'Input cannot exceed 100 characters';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.access_alarm_outlined),
+                      hintText: 'When did it start and end ?',
+                      labelText: 'Duration',
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Please enter some text';
+                      } else if (value.length > maxLength) {
+                        return 'Input cannot exceed 100 characters';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.description_outlined),
+                      hintText: 'Describe the project ?',
+                      labelText: 'Description',
+                    ),
+                    validator: (value) {
+                      if (value.length > maxLength) {
+                        return 'Input cannot exceed 100 characters';
+                      }
+                      return null;
+                    },
+                  ),
+                  Builder(
+                    builder: (context) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: RaisedButton(
+                        onPressed: () {
+                          // Validate returns true if the form is valid, or false
+                          // otherwise.
+                          if (_formKey.currentState.validate()) {
+                            // If the form is valid, display a Snackbar.
+                            Scaffold.of(context).showSnackBar(
+                                SnackBar(content: Text('Processing Data')));
+                          }
+                        },
+                        child: Text('Submit'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ));
+          ))
+    );
   }
 }
+
