@@ -3,14 +3,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_app/widget/AppDrawer.dart';
 import 'MyCustomForm.dart';
 
-class ProfileItems extends StatelessWidget {
+class ProfileCompact extends StatelessWidget {
 
-  static const String routeName = '/linkedin';
+  static const String routeName = '/profile';
 
 
   @override
   Widget build(BuildContext context) {
-    final appTitle = 'Form Validation Demo';
+    final appTitle = 'Profile Demo';
 
     return MaterialApp(
       title: appTitle,
@@ -36,7 +36,9 @@ class Content extends StatelessWidget {
           Header(),
           ShowcaseCarousel(),
           About(),
-          Experience()],
+          Experience(),
+        Certification(),
+        Education()],
       ),
     );
   }
@@ -92,12 +94,12 @@ class Header extends StatelessWidget {
                                   height: circleRadius / 2,
                                 ),
                                 Text(
-                                  'Martin B Utama',
+                                  'David Rahman',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold, fontSize: 34.0),
                                 ),
                                 Text(
-                                  'Bandung, West Java',
+                                  'Jakarta, Indonesia',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16.0,
@@ -109,7 +111,7 @@ class Header extends StatelessWidget {
                                 Padding(
                                   padding:
                                   const EdgeInsets.symmetric(horizontal: 32.0),
-                                  child: Text("Welder, Construction",
+                                  child: Text("Project Manager (Construction, Infrastructure)",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w300,
                                           height: 2.0,
@@ -424,19 +426,25 @@ class Experience extends StatelessWidget {
             height: 10.0,
           ),
           new ExperienceItem(
-              "Volunteer",
-              "Covid Watch",
-              "April 2020 - Present, 6mos",
-              "Covid Watch is a volunteer group starting in Stanford U. to develop decentralized Covid-19 contact-tracing application. The goal is to warn users of past contact with infected persons, to protect the privacy of the infected when reporting their symptoms, and to prevent misuse of tracing data I'm currently tasked to help build the backend software."),
+              "SR. Project Coordinator",
+              "Tripatra Engineering",
+              "Oct 2012 - Present",
+              "- Leading a major project of over 70M budget that aims to reduce population displacement which impacted more than 7000 people.\n- Successfully saved 6% of the planned budget through revising critical aspects in the scope and contracts."),
           new ExperienceItem(
-              "Software Engineer",
-              "Bebit, Inc",
-              "Dec 2019 - March 2020, 4mos",
-              '''A B2B software company providing user engagement, insight visualization and user behavior through AI. 
-My duties are :
-- to improve the code base with better maintainability and performance
-- to train the engineers in Scala and functional programming
-           ''')
+              "Mechanical Completion Lead",
+              "Senoro Gas Development Project",
+              "Sep 2012 - Nov 2015",
+              "- Completed business development/proposals for 7 projects which included (financial studies, feasibility studies, return of investments (ROI) and business models)."),
+          new ExperienceItem(
+              "Senior Instrumentation & Electrical Engineer",
+              "PT. Meindo Elang Indah",
+              "Apr 2012 - Sep 2012",
+              ""),
+          new ExperienceItem(
+              "Senior Instrumentation & Electrical Engineer",
+              "RP2 Rabigh II Petrochemical Project Saudi Arabia",
+              "Apr 2012 - Sep 2012",
+              "- Led a sub-project with over 4M budget and more than 20 people in the team."),
         ],
       ),
     );
@@ -446,7 +454,7 @@ My duties are :
 
 
 class ExperienceItem extends StatelessWidget {
-  ExperienceItem(this.title, this.org, this.duration, this.desc);
+  const ExperienceItem(this.title, this.org, this.duration, this.desc);
 
   final String title;
   final String org;
@@ -497,7 +505,8 @@ class About extends StatelessWidget {
             height: 10.0,
           ),
           Text(
-              "I am a Scala/Java software engineer with passion in functional programming and multi-threaded system. Throughout my career I have developed various applications from Android, database, back end, front end, and cloud. I'm an eager learner and always look for an opportunity to grow.",
+              "Certified Project Management Professional (PMP®), with more than 15 years of experience in oil and gas infrastructure projects.\n" +
+              "Looking forward to apply my knowledge and experience in project management and learn new techniques.",
               style: TextStyle(
                   fontWeight: FontWeight.w300, height: 1.5, fontSize: 14.0)),
           SizedBox(
@@ -507,6 +516,174 @@ class About extends StatelessWidget {
       ),
     );
   }
+}
+
+class Education extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Education",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, height: 2.0, fontSize: 24.0)),
+                  GestureDetector(
+                    child: IconButton(
+                      icon: Icon(Icons.add),
+                      tooltip: 'Add new item',
+                    ),
+                  ),
+                ]
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          new EducationItem(
+            title: "Applied Physics",
+            org: "Institut Teknologi Bandung",
+            duration: "Aug 2001 - Aug 2005",
+            desc: "GPA 3.5 / 4.0",
+          )
+        ],
+      ),
+    );
+  }
+
+}
+
+class Certification extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Certifications & Qualifications",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, height: 2.0, fontSize: 24.0)),
+                  GestureDetector(
+                    child: IconButton(
+                      icon: Icon(Icons.add),
+                      tooltip: 'Add new item',
+                    ),
+                  ),
+                ]
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          new Certificationitem(
+            title: "Project Management Professional",
+            org: "The Project Management Institute",
+            issued: "Aug 2015",
+          )
+        ],
+      ),
+    );
+  }
+
+}
+
+class Certificationitem extends StatelessWidget{
+  const Certificationitem({this.title, this.org, this.issued});
+
+  final String title;
+  final String org;
+  final String issued;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style: TextStyle(
+                  fontWeight: FontWeight.w600, height: 1.5, fontSize: 14.0)),
+          Text(org,
+              style: TextStyle(
+                  fontWeight: FontWeight.w600, height: 1.5, fontSize: 14.0)),
+          Text(issued,
+              style: TextStyle(
+                  fontWeight: FontWeight.w300, height: 1.5, fontSize: 14.0)),
+          GestureDetector(
+            child: Text("link",
+
+                style: TextStyle(
+                    fontWeight: FontWeight.w300, height: 1.5, fontSize: 14.0,
+                    color: Colors.lightBlue.withOpacity(1.0)
+                )
+
+            ),
+
+            onTap: (){
+              final snackBar = SnackBar(content: Text("Clicked the Container!"));
+              Scaffold.of(context).showSnackBar(snackBar);
+            },
+
+          ),
+          SizedBox(
+            height: 5.0,
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class EducationItem extends StatelessWidget {
+  const EducationItem({this.title, this.org, this.duration, this.desc});
+
+  final String title;
+  final String org;
+  final String duration;
+  final String desc;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style: TextStyle(
+                  fontWeight: FontWeight.w600, height: 1.5, fontSize: 14.0)),
+          Text(org,
+              style: TextStyle(
+                  fontWeight: FontWeight.w600, height: 1.5, fontSize: 14.0)),
+          Text(duration,
+              style: TextStyle(
+                  fontWeight: FontWeight.w300, height: 1.5, fontSize: 14.0)),
+          SizedBox(
+            height: 5.0,
+          ),
+          Text(desc,
+              style: TextStyle(
+                  fontWeight: FontWeight.w300, height: 1.5, fontSize: 14.0)),
+          SizedBox(
+            height: 20.0,
+          ),
+        ],
+      ),
+    );
+  }
+
 }
 
 // Create a Form widget.

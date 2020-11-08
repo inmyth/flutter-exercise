@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_app/modules/ProfileCompact.dart';
 import 'package:flutter_app/modules/ProfileItems.dart';
 import 'package:flutter_app/routes/Routes.dart';
-// import 'modules/MyCustomForm.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,9 +12,9 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: appTitle,
-      home: ProfileItems(),
+      home: ProfileCompact(),
       routes:  {
-        Routes.profile: (context) => ProfileItems(),
+        Routes.profile: (context) => ProfileCompact(),
       },
     );
   }

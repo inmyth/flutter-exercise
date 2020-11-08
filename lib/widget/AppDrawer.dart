@@ -12,9 +12,14 @@ class AppDrawer extends StatelessWidget {
           _createHeader(),
           _createDrawerItem(
               icon: Icons.perm_identity,
-              text: 'Profile / Resume',
+              text: 'Resume',
               onTap: () =>
                   Navigator.pushReplacementNamed(context, Routes.profile)),
+          _createDrawerItem(
+              icon: Icons.account_box,
+              text: 'Linkedin style Resume',
+              onTap: () =>
+                  Navigator.pushReplacementNamed(context, Routes.linkedin)),
           ListTile(
             title: Text('0.0.1'),
             onTap: () {},
