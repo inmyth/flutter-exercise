@@ -10,20 +10,56 @@ class ProfileCompact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appTitle = 'Profile Demo';
-
-    return MaterialApp(
-      title: appTitle,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(appTitle),
-        ),
-        body: Content(),
-        drawer: AppDrawer(),
+      return Scaffold(
+      appBar: AppBar(
+        title: Text("Profile"),
       ),
+      body: Content(),
+      drawer: AppDrawer(),
     );
   }
 }
+
+final experiences = [
+  new ExperienceItem(
+      title: "Project Manager",
+      org: "Tripatra",
+      duration: "Oct 2012 - Present",
+      desc: "Business Development Lead for Midstream Power & Industrial Sector\n• Diversify and grow of Tripatra revenue streams\n• Increase share of Tripatra market\n• Develop network with new business partner"),
+  new ExperienceItem(
+      title: "Senior Instrumentation & Electrical Engineer",
+      org: "PT. Meindo Elang Indah",
+      duration: "Apr 2012 - Sep 2012",
+      desc: "• Review and check engineering subcontractor (AMEC BERCA Indonesia) product detail engineering,\n• Supervision for applicability detail engineering, procurement, construction and commissioning of this project for instrumentation & control and electrical engineering."),
+  new ExperienceItem(
+      title: "Instrumentation & Control Engineer",
+      org: "GS E&C South Korea",
+      duration: "Mar 2011 - May 2012",
+      desc: "• Review and check Instrumentation & Control subcontractor product basic design engineering, detail engineering, procurement, construction and commissioning of this project\n• Provides technical planning and general guidance for instrumentation in the execution of the project."),
+];
+
+final projects = [
+  new ExperienceItem(
+      title: "Senoro Gas Development Project",
+      org: "Tripatra",
+      duration: "Jun 2014 - Jan 2015",
+      desc: "Represents the interface & coordination between construction, commissioning and operation group activities and includes all interface checks between all systems and subsystems in EPCC Senoro Gas Development Project with value more than 500 mio USD"),
+  new ExperienceItem(
+      title: "Ruby Field Development",
+      org: "PT Meido Elang Indah, TOTAL E&P Indonesie",
+      duration: "May 2012 - Nov 2012",
+      desc: "Ruby Tie In (RTI) project is part of Ruby Field Development operated by Pearl Oil Sebuku Limited (POSL). RTI will be executed by Total E&P Indonesie (TEPI) as Pearl Oil partner as well as operator for Senipah Facility. Gas maximum flowrate capacity from this block is 120 MMscfd."
+  )
+];
+
+final educations = [
+  new ExperienceItem(
+    title: "Applied Physics",
+    org: "Institut Teknologi Bandung",
+    duration: "Aug 2001 - Aug 2005",
+    desc: "GPA 3.5 / 4.0",
+  )
+];
 
 class Content extends StatelessWidget {
 
@@ -36,13 +72,17 @@ class Content extends StatelessWidget {
           Header(),
           ShowcaseCarousel(),
           About(),
-          Experience(),
+          Experience(list: experiences, title: "Experiences", isAddable: true),
+        Experience(list: projects, title: "Projects", isAddable: false),
         Certification(),
-        Education()],
+          Experience(list: educations, title: "Education", isAddable: false)],
       ),
     );
   }
 }
+
+
+
 
 class Header extends StatelessWidget {
   final double circleRadius = 100.0;
@@ -111,7 +151,8 @@ class Header extends StatelessWidget {
                                 Padding(
                                   padding:
                                   const EdgeInsets.symmetric(horizontal: 32.0),
-                                  child: Text("Project Manager (Construction, Infrastructure)",
+                                  child: Text("Project Manager\n (Construction, Infrastructure)",
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w300,
                                           height: 2.0,
@@ -141,7 +182,12 @@ class Header extends StatelessWidget {
                         padding: EdgeInsets.all(4.0),
                         child: Center(
                           child: Container(
-                            child: Icon(Icons.person),
+                            child:             CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                "https://media-exp1.licdn.com/dms/image/C4E03AQEcQGn1OLMJhQ/profile-displayphoto-shrink_800_800/0?e=1610582400&v=beta&t=AEfJrWhUCr3fHHDfz-DecwjhR0TPBM4nnjCUWFFeOQM",
+                              ),
+                              radius: 50.0,
+                            ),
 
                             /// replace your image with the Icon
                           ),
@@ -160,129 +206,6 @@ class Header extends StatelessWidget {
   }
 }
 
-var header = Container(
-    decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.lightBlueAccent, Colors.indigoAccent])),
-    child: Container(
-      width: double.infinity,
-      height: 350.0,
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            CircleAvatar(
-              backgroundImage: NetworkImage(
-                "https://img.favpng.com/6/17/15/rubber-duck-cartoon-avatar-png-favpng-kKz7Lgv3zu0m8WdGXRWfg45hN.jpg",
-              ),
-              radius: 50.0,
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              "Alice James",
-              style: TextStyle(
-                fontSize: 22.0,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Card(
-              margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
-              clipBehavior: Clip.antiAlias,
-              color: Colors.white,
-              elevation: 5.0,
-              child: Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 8.0, vertical: 22.0),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            "Posts",
-                            style: TextStyle(
-                              color: Colors.redAccent,
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Text(
-                            "5200",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.pinkAccent,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            "Followers",
-                            style: TextStyle(
-                              color: Colors.redAccent,
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Text(
-                            "28.5K",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.pinkAccent,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            "Follow",
-                            style: TextStyle(
-                              color: Colors.redAccent,
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Text(
-                            "1300",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.pinkAccent,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    ));
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1507335563142-a814078ce38c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=701&q=80',
@@ -394,6 +317,12 @@ class ShowcaseImageScreen extends StatelessWidget {
 }
 
 class Experience extends StatelessWidget {
+  const Experience({this.list, this.title, this.isAddable});
+
+  final List<ExperienceItem> list;
+  final String title;
+  final isAddable;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -405,7 +334,7 @@ class Experience extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Experience",
+                  Text(this.title,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, height: 2.0, fontSize: 24.0)),
                   GestureDetector(
@@ -413,9 +342,16 @@ class Experience extends StatelessWidget {
                       icon: Icon(Icons.add),
                       tooltip: 'Add experience',
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) {
-                          return _ExperienceForm();
-                        }));
+                        if(this.isAddable){
+                          Navigator.push(context, MaterialPageRoute(builder: (_) {
+                            return _ExperienceForm();
+                          }));
+                        }
+                        else{
+                          Scaffold.of(context).showSnackBar(
+                              SnackBar(content: Text('Lagi dibuat')));
+                        }
+
                       },
                     ),
                   ),
@@ -425,26 +361,7 @@ class Experience extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          new ExperienceItem(
-              "SR. Project Coordinator",
-              "Tripatra Engineering",
-              "Oct 2012 - Present",
-              "- Leading a major project of over 70M budget that aims to reduce population displacement which impacted more than 7000 people.\n- Successfully saved 6% of the planned budget through revising critical aspects in the scope and contracts."),
-          new ExperienceItem(
-              "Mechanical Completion Lead",
-              "Senoro Gas Development Project",
-              "Sep 2012 - Nov 2015",
-              "- Completed business development/proposals for 7 projects which included (financial studies, feasibility studies, return of investments (ROI) and business models)."),
-          new ExperienceItem(
-              "Senior Instrumentation & Electrical Engineer",
-              "PT. Meindo Elang Indah",
-              "Apr 2012 - Sep 2012",
-              ""),
-          new ExperienceItem(
-              "Senior Instrumentation & Electrical Engineer",
-              "RP2 Rabigh II Petrochemical Project Saudi Arabia",
-              "Apr 2012 - Sep 2012",
-              "- Led a sub-project with over 4M budget and more than 20 people in the team."),
+          ...list,
         ],
       ),
     );
@@ -454,12 +371,13 @@ class Experience extends StatelessWidget {
 
 
 class ExperienceItem extends StatelessWidget {
-  const ExperienceItem(this.title, this.org, this.duration, this.desc);
+  const ExperienceItem({this.title, this.org, this.duration, this.desc});
 
   final String title;
   final String org;
   final String duration;
   final String desc;
+
 
   @override
   Widget build(BuildContext context) {
@@ -505,7 +423,7 @@ class About extends StatelessWidget {
             height: 10.0,
           ),
           Text(
-              "Certified Project Management Professional (PMP®), with more than 15 years of experience in oil and gas infrastructure projects.\n" +
+              "Certified Project Management Professional (IAPM®), with more than 15 years of experience in oil and gas infrastructure projects.\n" +
               "Looking forward to apply my knowledge and experience in project management and learn new techniques.",
               style: TextStyle(
                   fontWeight: FontWeight.w300, height: 1.5, fontSize: 14.0)),
@@ -518,45 +436,6 @@ class About extends StatelessWidget {
   }
 }
 
-class Education extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Container(
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Education",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, height: 2.0, fontSize: 24.0)),
-                  GestureDetector(
-                    child: IconButton(
-                      icon: Icon(Icons.add),
-                      tooltip: 'Add new item',
-                    ),
-                  ),
-                ]
-            ),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          new EducationItem(
-            title: "Applied Physics",
-            org: "Institut Teknologi Bandung",
-            duration: "Aug 2001 - Aug 2005",
-            desc: "GPA 3.5 / 4.0",
-          )
-        ],
-      ),
-    );
-  }
-
-}
 
 class Certification extends StatelessWidget {
   @override
@@ -586,9 +465,9 @@ class Certification extends StatelessWidget {
             height: 10.0,
           ),
           new CertificationItem(
-            title: "Project Management Professional",
-            org: "The Project Management Institute",
-            issued: "Aug 2015",
+            title: "International Project Manager",
+            org: "IAPM",
+            issued: "Aug 2018",
             link: "https://siki.lpjk.net/lpjknew/detail/detail_ta_kbli.php?id=3276063009830006",
           ),
         new CertificationItem(
@@ -664,44 +543,6 @@ class CertificationItem extends StatelessWidget{
   }
 }
 
-class EducationItem extends StatelessWidget {
-  const EducationItem({this.title, this.org, this.duration, this.desc});
-
-  final String title;
-  final String org;
-  final String duration;
-  final String desc;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,
-              style: TextStyle(
-                  fontWeight: FontWeight.w600, height: 1.5, fontSize: 14.0)),
-          Text(org,
-              style: TextStyle(
-                  fontWeight: FontWeight.w600, height: 1.5, fontSize: 14.0)),
-          Text(duration,
-              style: TextStyle(
-                  fontWeight: FontWeight.w300, height: 1.5, fontSize: 14.0)),
-          SizedBox(
-            height: 5.0,
-          ),
-          Text(desc,
-              style: TextStyle(
-                  fontWeight: FontWeight.w300, height: 1.5, fontSize: 14.0)),
-          SizedBox(
-            height: 20.0,
-          ),
-        ],
-      ),
-    );
-  }
-
-}
 
 
 class _ExperienceForm extends StatelessWidget{

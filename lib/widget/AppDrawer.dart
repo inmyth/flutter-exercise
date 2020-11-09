@@ -3,8 +3,12 @@ import 'package:flutter_app/routes/Routes.dart';
 
 
 class AppDrawer extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
+    final currentPage = ModalRoute.of(context).settings.name;
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -14,12 +18,12 @@ class AppDrawer extends StatelessWidget {
               icon: Icons.perm_identity,
               text: 'Resume',
               onTap: () =>
-                  Navigator.pushReplacementNamed(context, Routes.profile)),
+              currentPage == Routes.profile ? null : Navigator.pushReplacementNamed(context, Routes.profile)),
           _createDrawerItem(
               icon: Icons.account_box,
-              text: 'Linkedin style Resume',
-              onTap: () =>
-                  Navigator.pushReplacementNamed(context, Routes.linkedin)),
+              text: 'Resume (old)',
+              onTap: () => currentPage == Routes.profileOld ? null :
+                  Navigator.pushReplacementNamed(context, Routes.profileOld)),
           ListTile(
             title: Text('0.0.1'),
             onTap: () {},

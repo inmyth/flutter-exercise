@@ -1,26 +1,33 @@
-import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_app/widget/AppDrawer.dart';
-import 'MyCustomForm.dart';
 
 class ProfileItems extends StatelessWidget {
 
-  static const String routeName = '/linkedin';
+  static const String routeName = '/profile_old';
 
 
   @override
   Widget build(BuildContext context) {
-    final appTitle = 'Form Validation Demo';
+    // final appTitle = 'Form Validation Demo';
+    //
+    // return MaterialApp(
+    //   title: appTitle,
+    //   home: Scaffold(
+    //     appBar: AppBar(
+    //       title: Text(appTitle),
+    //     ),
+    //     body: Content(),
+    //     drawer: AppDrawer(),
+    //   ),
+    // );
 
-    return MaterialApp(
-      title: appTitle,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(appTitle),
-        ),
-        body: Content(),
-        drawer: AppDrawer(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Profile (Old)"),
       ),
+      body: Content(),
+      drawer: AppDrawer(),
     );
   }
 }
@@ -509,17 +516,17 @@ class About extends StatelessWidget {
   }
 }
 
-// Create a Form widget.
-class Itemz extends StatefulWidget {
+
+class MyCustomForm extends StatefulWidget {
   @override
-  ItemzState createState() {
-    return ItemzState();
+  MyCustomFormState createState() {
+    return MyCustomFormState();
   }
 }
 
 // Create a corresponding State class.
 // This class holds data related to the form.
-class ItemzState extends State<Itemz> {
+class MyCustomFormState extends State<MyCustomForm> {
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
   //
@@ -541,15 +548,19 @@ class ItemzState extends State<Itemz> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 TextFormField(
+                  keyboardType: TextInputType.multiline,
+                  minLines: 3,//Normal textInputField will be displayed
+                  maxLines: 5,// when user presses enter it will adapt to it
                   decoration: const InputDecoration(
                     icon: Icon(Icons.person),
-                    hintText: 'What do people call you?',
-                    labelText: 'Name *',
+                    hintText: 'Describe your work experience',
+                    labelText: 'Experience *',
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter some text';
-                    } else if (exp.hasMatch(value)) {
+                    }
+                    else if (exp.hasMatch(value)){
                       return 'Input has to start with 123';
                     }
                     return null;
@@ -563,8 +574,7 @@ class ItemzState extends State<Itemz> {
                       // otherwise.
                       if (_formKey.currentState.validate()) {
                         // If the form is valid, display a Snackbar.
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text('Processing Data')));
+                        Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
                       }
                     },
                     child: Text('Submit'),
@@ -573,6 +583,8 @@ class ItemzState extends State<Itemz> {
               ],
             ),
           ),
-        ));
+        )
+    );
+
   }
 }

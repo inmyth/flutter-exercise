@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       home: ProfileCompact(),
       routes:  {
         Routes.profile: (context) => ProfileCompact(),
+        Routes.profileOld: (context) => ProfileItems()
       },
     );
   }
