@@ -468,7 +468,7 @@ class Certification extends StatelessWidget {
             title: "International Project Manager",
             org: "IAPM",
             issued: "Aug 2018",
-            link: "https://siki.lpjk.net/lpjknew/detail/detail_ta_kbli.php?id=3276063009830006",
+            link: "https://cert.pmi.org/registry.aspx",
           ),
         new CertificationItem(
             title: "Project Management Expert",

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/modules/ProfileCompact.dart';
 import 'package:flutter_app/modules/ProfileItems.dart';
+import 'package:flutter_app/modules/Certificate.dart';
 import 'package:flutter_app/routes/Routes.dart';
 
 void main() => runApp(MyApp());
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       home: ProfileCompact(),
       routes:  {
         Routes.profile: (context) => ProfileCompact(),
-        Routes.profileOld: (context) => ProfileItems()
+        Routes.certificate: (context) => Certificate(),
+        Routes.profileOld: (context) => ProfileItems(),
       },
     );
   }
