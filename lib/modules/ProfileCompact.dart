@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_app/widget/AppDrawer.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_app/helper/Helper.dart';
 
 class ProfileCompact extends StatelessWidget {
 
@@ -465,7 +465,7 @@ class Certification extends StatelessWidget {
             height: 10.0,
           ),
           new CertificationItem(
-            title: "International Project Manager",
+            title: "Certified International Project Manager",
             org: "IAPM",
             issued: "Aug 2018",
             link: "https://cert.pmi.org/registry.aspx",
@@ -491,18 +491,18 @@ class CertificationItem extends StatelessWidget{
   final String issued;
   final String link;
 
-  Future<void> _launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-        headers: <String, String>{'my_header_key': 'my_header_value'},
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  // Future<void> _launchInBrowser(String url) async {
+  //   if (await canLaunch(url)) {
+  //     await launch(
+  //       url,
+  //       forceSafariVC: false,
+  //       forceWebView: false,
+  //       headers: <String, String>{'my_header_key': 'my_header_value'},
+  //     );
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -528,7 +528,7 @@ class CertificationItem extends StatelessWidget{
 
             ),
             onTap: (){
-              _launchInBrowser(link);
+              launchInBrowser(link);
             },
           ),
           SizedBox(
