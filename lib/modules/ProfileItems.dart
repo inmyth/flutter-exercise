@@ -504,16 +504,17 @@ class About extends StatelessWidget {
 }
 
 
+
 class MyCustomForm extends StatefulWidget {
+
   @override
-  MyCustomFormState createState() {
-    return MyCustomFormState();
-  }
+  _MyCustomFormState createState() => _MyCustomFormState();
+
 }
 
 // Create a corresponding State class.
 // This class holds data related to the form.
-class MyCustomFormState extends State<MyCustomForm> {
+class _MyCustomFormState extends State<MyCustomForm> {
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
   //

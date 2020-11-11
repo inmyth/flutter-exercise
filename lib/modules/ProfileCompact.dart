@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_app/modules/AddItemOnly.dart';
 import 'package:flutter_app/widget/AppDrawer.dart';
 import 'package:flutter_app/helper/Helper.dart';
 
@@ -344,7 +345,7 @@ class Experience extends StatelessWidget {
                       onPressed: () {
                         if(this.isAddable){
                           Navigator.push(context, MaterialPageRoute(builder: (_) {
-                            return _ExperienceForm();
+                            return AddItemOnly();
                           }));
                         }
                         else{
@@ -545,109 +546,5 @@ class CertificationItem extends StatelessWidget{
 
 
 
-class _ExperienceForm extends StatelessWidget{
-  final _formKey = GlobalKey<FormState>();
 
-  final RegExp exp = new RegExp(r"([123]+)");
-  final maxLength = 100;
-
-  @override
-  Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
-    // Create a global key that uniquely identifies the Form widget
-    // and allows validation of the form.
-    //
-    // Note: This is a GlobalKey<FormState>,
-    // not a GlobalKey<MyCustomFormState>.
-    return Scaffold(
-      body: Card(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.work_outline),
-                      hintText: 'What is your position ?',
-                      labelText: 'Position',
-                    ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Please enter some text';
-                      } else if (value.length > maxLength) {
-                        return 'Input cannot exceed 100 characters';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.assessment_outlined),
-                      hintText: 'What is the company or project ?',
-                      labelText: 'Company',
-                    ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Please enter some text';
-                      } else if (value.length > maxLength) {
-                        return 'Input cannot exceed 100 characters';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.access_alarm_outlined),
-                      hintText: 'When did it start and end ?',
-                      labelText: 'Duration',
-                    ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Please enter some text';
-                      } else if (value.length > maxLength) {
-                        return 'Input cannot exceed 100 characters';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.description_outlined),
-                      hintText: 'Describe the project ?',
-                      labelText: 'Description',
-                    ),
-                    validator: (value) {
-                      if (value.length > maxLength) {
-                        return 'Input cannot exceed 100 characters';
-                      }
-                      return null;
-                    },
-                  ),
-                  Builder(
-                    builder: (context) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: RaisedButton(
-                        onPressed: () {
-                          // Validate returns true if the form is valid, or false
-                          // otherwise.
-                          if (_formKey.currentState.validate()) {
-                            // If the form is valid, display a Snackbar.
-                            Scaffold.of(context).showSnackBar(
-                                SnackBar(content: Text('Processing Data')));
-                          }
-                        },
-                        child: Text('Submit'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ))
-    );
-  }
-}
 
